@@ -17,8 +17,8 @@ def create(request):
 		password = request.POST['password']
 		password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 		User.objects.create(first_name= request.POST['first_name'], last_name = request.POST['last_name'], email= request.POST['email'], password= password)
-		request.session['email'] = request.POST['email_log']
-		request.session['user_id'] = User.objects.get(email= request.POST['email_log']).id 
+		request.session['email'] = request.POST['email']
+		request.session['user_id'] = User.objects.get(email= request.POST['email']).id 
 	return redirect('/logged')
 
 def login(request):
